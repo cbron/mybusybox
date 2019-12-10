@@ -3,32 +3,14 @@ services:
     env:
     - name: FOO
       value: ${REVISION}
-    - name: BAR
-      value: BAZ
     - name: BAZ
       value: ${NAMESPACE}
     build:
       branch: master
-      buildContext: .
+      buildContext: ./
       dockerfile: Dockerfile
-      repo: https://github.com/rancher-max/rio-demo
-      imageName: myname/custimage
-    ports:
-    - 8080
-  custlocal:
-    build:
-      buildContext: ./blah/
-      dockerfile: ./blah/Dockerfile
-      imageName: localcontext/blahimage:dev
-    ports:
-    - "8080"
-  please:
-    app: ${NAMESPACE}
-    build:
-      branch: master
-      buildContext: .
-      dockerfile: Dockerfile
-      repo: https://github.com/rancher-max/rio-demo
+      repo: https://github.com/cbron/mybusybox
+      imageName: default/revimage:${REVISION}
     ports:
     - 8080
 
