@@ -1,10 +1,22 @@
 services:
   revs:
-    version: v1
+    version: v{{.Values.REVISION}}
     ports:
     - 8080
     build:
-      branch: master
+      branch: riofile-revision
       buildContext: .
       dockerfile: Dockerfile
       repo: https://github.com/cbron/mybusybox
+      imageName: "ns/name:r{{.Values.REVISION}}"
+
+template:
+  goTemplate: true # use go templating
+  envSubst: true # use ENV vars during templating
+  questions:  # now make some questions that we provide answers too
+  - variable: FOO
+    description: "fooo"
+  - variable: NAMESPACE
+    description: "The namespace"
+  - variable: REVISION
+    description: "The revision"
