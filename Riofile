@@ -1,16 +1,11 @@
 services:
   custrev:
-    env:
-    - name: FOO
-      value: ${REVISION}
-    - name: BAZ
-      value: ${NAMESPACE}
     build:
       branch: master
       buildContext: ./
       dockerfile: Dockerfile
       repo: https://github.com/cbron/mybusybox
-      imageName: default/revimage:${REVISION}
+      imageName: default/revimage:{{.Values.REVISION}}
     ports:
     - 8080
 
@@ -19,7 +14,7 @@ template:
   envSubst: true # use ENV vars during templating
   questions:  # now make some questions that we provide answers too
   - variable: FOO
-    description: ""
+    description: "fooo"
   - variable: NAMESPACE
     description: "The namespace"
   - variable: REVISION
