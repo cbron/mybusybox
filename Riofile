@@ -1,13 +1,14 @@
 services:
-  custrev:
-    build:
-      branch: master
-      buildContext: ./
-      dockerfile: Dockerfile
-      repo: https://github.com/cbron/mybusybox
-      imageName: default/revimage:{{.Values.REVISION}}
+  revs:
+    version: v{{.Values.REVISION}}
     ports:
     - 8080
+    build:
+      branch: riofile-revision
+      buildContext: .
+      dockerfile: Dockerfile
+      repo: https://github.com/cbron/mybusybox
+      imageName: ns/name:dev
 
 template:
   goTemplate: true # use go templating
