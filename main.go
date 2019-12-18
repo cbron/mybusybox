@@ -30,3 +30,4 @@ func main() {
 	http.HandleFunc("/status", status)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
+
